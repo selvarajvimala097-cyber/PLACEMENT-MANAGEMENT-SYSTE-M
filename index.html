@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Placement Management System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🎓 Placement</h2>
+    <h2>Management</h2>
+
+    <a href="index.html" class="active">🏠 Dashboard</a>
+    <a href="students.html">👨‍🎓 Students</a>
+    <a href="companies.html">🏢 Companies</a>
+    <a href="placements.html">💼 Placements</a>
+    <a href="efficiency.html">📊 Efficiency</a>
+
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+        <div>
+            <h1>Dashboard</h1>
+            <p>Placement Management System</p>
+        </div>
+
+        <div class="profile">
+            👤 Admin
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <div class="card blue">
+            <h3>Total Students</h3>
+            <h1 id="studentCount">0</h1>
+            <p>Registered Students</p>
+        </div>
+
+        <div class="card purple">
+            <h3>Total Companies</h3>
+            <h1 id="companyCount">0</h1>
+            <p>Recruiting Companies</p>
+        </div>
+
+        <div class="card green">
+            <h3>Placed Students</h3>
+            <h1 id="placedCount">0</h1>
+            <p>Successfully Placed</p>
+        </div>
+
+        <div class="card orange">
+            <h3>Placement Rate</h3>
+            <h1 id="placementRate">0%</h1>
+            <p>Overall Efficiency</p>
+        </div>
+
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="panel">
+
+            <h2>📈 Placement Overview</h2>
+
+            <div class="progress-box">
+
+                <p>Placement Efficiency</p>
+
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
+
+                <h2 id="progressText">0%</h2>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>📋 Quick Actions</h2>
+
+            <a href="students.html" class="action-btn">
+                ➕ Add Student
+            </a>
+
+            <a href="companies.html" class="action-btn">
+                🏢 Add Company
+            </a>
+
+            <a href="placements.html" class="action-btn">
+                💼 Add Placement
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
