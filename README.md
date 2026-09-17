@@ -25,13 +25,6 @@ It provides a dashboard to manage students, companies, and placement records.
 - JavaScript
 - LocalStorage
 
-## 📂 Project Structure
-
-```text
-Placement-Management-System/
-│
-└── index.html
-
 
 
 output link:https://selvarajvimala097-cyber.github.io/PLACEMENT-MANAGEMENT-SYSTE-M/
