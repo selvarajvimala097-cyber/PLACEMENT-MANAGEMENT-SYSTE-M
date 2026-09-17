@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Placements - Placement Management</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🎓 Placement</h2>
+    <h2>Management</h2>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="students.html">👨‍🎓 Students</a>
+    <a href="companies.html">🏢 Companies</a>
+    <a href="placements.html" class="active">💼 Placements</a>
+    <a href="efficiency.html">📊 Efficiency</a>
+
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Placements</h1>
+            <p>Manage student placements</p>
+        </div>
+
+    </div>
+
+    <div class="form-panel">
+
+        <h2>➕ Add Placement</h2>
+
+        <form id="placementForm">
+
+            <input type="hidden" id="placementId">
+
+            <input type="text"
+                   id="placementStudent"
+                   placeholder="Student Name"
+                   required>
+
+            <input type="text"
+                   id="placementCompany"
+                   placeholder="Company Name"
+                   required>
+
+            <input type="text"
+                   id="placementRole"
+                   placeholder="Job Role"
+                   required>
+
+            <input type="text"
+                   id="placementPackage"
+                   placeholder="Package"
+                   required>
+
+            <input type="date"
+                   id="placementDate"
+                   required>
+
+            <button type="submit" class="btn">
+                Save Placement
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="panel">
+
+        <div class="table-header">
+
+            <h2>💼 Placement List</h2>
+
+            <input type="text"
+                   id="searchPlacement"
+                   placeholder="🔍 Search placement">
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Package</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="placementTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/placements.js"></script>
+
+</body>
+</html>
