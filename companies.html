@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Companies - Placement Management</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🎓 Placement</h2>
+    <h2>Management</h2>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="students.html">👨‍🎓 Students</a>
+    <a href="companies.html" class="active">🏢 Companies</a>
+    <a href="placements.html">💼 Placements</a>
+    <a href="efficiency.html">📊 Efficiency</a>
+
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Companies</h1>
+            <p>Manage recruiting companies</p>
+        </div>
+
+    </div>
+
+    <div class="form-panel">
+
+        <h2>➕ Add Company</h2>
+
+        <form id="companyForm">
+
+            <input type="hidden" id="companyId">
+
+            <input type="text"
+                   id="companyName"
+                   placeholder="Company Name"
+                   required>
+
+            <input type="text"
+                   id="companyRole"
+                   placeholder="Job Role"
+                   required>
+
+            <input type="text"
+                   id="companyPackage"
+                   placeholder="Package (e.g. 6 LPA)"
+                   required>
+
+            <input type="text"
+                   id="companyLocation"
+                   placeholder="Location"
+                   required>
+
+            <button type="submit" class="btn">
+                Save Company
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="panel">
+
+        <div class="table-header">
+
+            <h2>🏢 Company List</h2>
+
+            <input type="text"
+                   id="searchCompany"
+                   placeholder="🔍 Search company">
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Package</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="companyTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/companies.js"></script>
+
+</body>
+</html>
