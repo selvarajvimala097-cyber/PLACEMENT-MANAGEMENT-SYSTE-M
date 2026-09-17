@@ -1,114 +1,1104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placement Management System</title>
 
-    <title>Placement Management System</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-    <link rel="stylesheet" href="css/style.css">
+body{
+    background:#f4f7fb;
+    color:#222;
+}
+
+.sidebar{
+    position:fixed;
+    width:240px;
+    height:100vh;
+    background:linear-gradient(180deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:30px 15px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.sidebar button{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:0;
+    border-radius:8px;
+    background:transparent;
+    color:white;
+    text-align:left;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.sidebar button:hover,
+.sidebar button.active{
+    background:rgba(255,255,255,.2);
+}
+
+.main{
+    margin-left:240px;
+    padding:30px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+header h1{
+    font-size:30px;
+}
+
+header p{
+    color:#777;
+    margin-top:5px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    padding:25px;
+    color:white;
+    border-radius:15px;
+}
+
+.card h1{
+    margin:10px 0;
+    font-size:35px;
+}
+
+.blue{
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.purple{
+    background:linear-gradient(135deg,#7c3aed,#c084fc);
+}
+
+.green{
+    background:linear-gradient(135deg,#059669,#34d399);
+}
+
+.orange{
+    background:linear-gradient(135deg,#ea580c,#fb923c);
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+form{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+input,select{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:7px;
+}
+
+form button{
+    padding:12px;
+    border:0;
+    border-radius:7px;
+    background:#4f46e5;
+    color:white;
+    cursor:pointer;
+}
+
+.search{
+    width:300px;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:13px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+}
+
+th{
+    background:#f8fafc;
+}
+
+.edit{
+    background:#2563eb;
+    color:white;
+    border:0;
+    padding:7px 10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.delete{
+    background:#dc2626;
+    color:white;
+    border:0;
+    padding:7px 10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.progress{
+    height:25px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+#bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#4f46e5,#06b6d4);
+}
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    form{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .search{
+        width:100%;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<!-- SIDEBAR -->
+
 <div class="sidebar">
 
-    <h2>🎓 Placement</h2>
-    <h2>Management</h2>
+<h2>🎓 Placement</h2>
+<h2>Management</h2>
 
-    <a href="index.html" class="active">🏠 Dashboard</a>
-    <a href="students.html">👨‍🎓 Students</a>
-    <a href="companies.html">🏢 Companies</a>
-    <a href="placements.html">💼 Placements</a>
-    <a href="efficiency.html">📊 Efficiency</a>
+<button class="active" onclick="showPage('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showPage('students',this)">
+👨‍🎓 Students
+</button>
+
+<button onclick="showPage('companies',this)">
+🏢 Companies
+</button>
+
+<button onclick="showPage('placements',this)">
+💼 Placements
+</button>
+
+<button onclick="showPage('efficiency',this)">
+📊 Efficiency
+</button>
 
 </div>
+
 
 <div class="main">
 
-    <div class="topbar">
-        <div>
-            <h1>Dashboard</h1>
-            <p>Placement Management System</p>
-        </div>
+<!-- DASHBOARD -->
 
-        <div class="profile">
-            👤 Admin
-        </div>
-    </div>
+<div id="dashboard" class="page active">
 
-    <div class="cards">
+<header>
+<div>
+<h1>Dashboard</h1>
+<p>Placement Management System</p>
+</div>
+</header>
 
-        <div class="card blue">
-            <h3>Total Students</h3>
-            <h1 id="studentCount">0</h1>
-            <p>Registered Students</p>
-        </div>
+<div class="cards">
 
-        <div class="card purple">
-            <h3>Total Companies</h3>
-            <h1 id="companyCount">0</h1>
-            <p>Recruiting Companies</p>
-        </div>
+<div class="card blue">
+<h3>Total Students</h3>
+<h1 id="totalStudents">0</h1>
+<p>Registered Students</p>
+</div>
 
-        <div class="card green">
-            <h3>Placed Students</h3>
-            <h1 id="placedCount">0</h1>
-            <p>Successfully Placed</p>
-        </div>
+<div class="card purple">
+<h3>Total Companies</h3>
+<h1 id="totalCompanies">0</h1>
+<p>Recruiting Companies</p>
+</div>
 
-        <div class="card orange">
-            <h3>Placement Rate</h3>
-            <h1 id="placementRate">0%</h1>
-            <p>Overall Efficiency</p>
-        </div>
+<div class="card green">
+<h3>Placed Students</h3>
+<h1 id="totalPlaced">0</h1>
+<p>Successfully Placed</p>
+</div>
 
-    </div>
-
-    <div class="dashboard-grid">
-
-        <div class="panel">
-
-            <h2>📈 Placement Overview</h2>
-
-            <div class="progress-box">
-
-                <p>Placement Efficiency</p>
-
-                <div class="progress">
-                    <div id="progressBar"></div>
-                </div>
-
-                <h2 id="progressText">0%</h2>
-
-            </div>
-
-        </div>
-
-        <div class="panel">
-
-            <h2>📋 Quick Actions</h2>
-
-            <a href="students.html" class="action-btn">
-                ➕ Add Student
-            </a>
-
-            <a href="companies.html" class="action-btn">
-                🏢 Add Company
-            </a>
-
-            <a href="placements.html" class="action-btn">
-                💼 Add Placement
-            </a>
-
-        </div>
-
-    </div>
+<div class="card orange">
+<h3>Placement Rate</h3>
+<h1 id="placementRate">0%</h1>
+<p>Overall Efficiency</p>
+</div>
 
 </div>
 
-<script src="js/storage.js"></script>
-<script src="js/dashboard.js"></script>
+<div class="box">
+
+<h2>📈 Placement Efficiency</h2>
+
+<div class="progress">
+<div id="bar"></div>
+</div>
+
+<h2 id="dashboardRate">0%</h2>
+
+</div>
+
+</div>
+
+
+<!-- STUDENTS -->
+
+<div id="students" class="page">
+
+<header>
+<div>
+<h1>👨‍🎓 Students</h1>
+<p>Manage student records</p>
+</div>
+</header>
+
+<div class="box">
+
+<h2>Add Student</h2>
+
+<form id="studentForm">
+
+<input id="studentName"
+placeholder="Student Name" required>
+
+<input id="studentEmail"
+type="email"
+placeholder="Email" required>
+
+<input id="studentDept"
+placeholder="Department" required>
+
+<input id="studentYear"
+type="number"
+placeholder="Year" required>
+
+<input id="studentCgpa"
+type="number"
+step="0.1"
+placeholder="CGPA" required>
+
+<select id="studentStatus">
+
+<option value="Eligible">Eligible</option>
+<option value="Placed">Placed</option>
+<option value="Not Eligible">Not Eligible</option>
+
+</select>
+
+<button type="submit">
+Save Student
+</button>
+
+</form>
+
+</div>
+
+<div class="box">
+
+<h2>Student List</h2>
+
+<input class="search"
+id="studentSearch"
+placeholder="🔍 Search student">
+
+<table>
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Department</th>
+<th>Year</th>
+<th>CGPA</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- COMPANIES -->
+
+<div id="companies" class="page">
+
+<header>
+<div>
+<h1>🏢 Companies</h1>
+<p>Manage recruiting companies</p>
+</div>
+</header>
+
+<div class="box">
+
+<h2>Add Company</h2>
+
+<form id="companyForm">
+
+<input id="companyName"
+placeholder="Company Name" required>
+
+<input id="companyRole"
+placeholder="Job Role" required>
+
+<input id="companyPackage"
+placeholder="Package e.g. 6 LPA" required>
+
+<input id="companyLocation"
+placeholder="Location" required>
+
+<button type="submit">
+Save Company
+</button>
+
+</form>
+
+</div>
+
+<div class="box">
+
+<h2>Company List</h2>
+
+<input class="search"
+id="companySearch"
+placeholder="🔍 Search company">
+
+<table>
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Company</th>
+<th>Role</th>
+<th>Package</th>
+<th>Location</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="companyTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- PLACEMENTS -->
+
+<div id="placements" class="page">
+
+<header>
+<div>
+<h1>💼 Placements</h1>
+<p>Manage placement records</p>
+</div>
+</header>
+
+<div class="box">
+
+<h2>Add Placement</h2>
+
+<form id="placementForm">
+
+<input id="placementStudent"
+placeholder="Student Name" required>
+
+<input id="placementCompany"
+placeholder="Company Name" required>
+
+<input id="placementRole"
+placeholder="Job Role" required>
+
+<input id="placementPackage"
+placeholder="Package" required>
+
+<input id="placementDate"
+type="date" required>
+
+<button type="submit">
+Save Placement
+</button>
+
+</form>
+
+</div>
+
+<div class="box">
+
+<h2>Placement List</h2>
+
+<input class="search"
+id="placementSearch"
+placeholder="🔍 Search placement">
+
+<table>
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Student</th>
+<th>Company</th>
+<th>Role</th>
+<th>Package</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="placementTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- EFFICIENCY -->
+
+<div id="efficiency" class="page">
+
+<header>
+<div>
+<h1>📊 Efficiency Dashboard</h1>
+<p>Placement performance analysis</p>
+</div>
+</header>
+
+<div class="cards">
+
+<div class="card blue">
+<h3>Students</h3>
+<h1 id="eStudents">0</h1>
+</div>
+
+<div class="card green">
+<h3>Placed</h3>
+<h1 id="ePlaced">0</h1>
+</div>
+
+<div class="card purple">
+<h3>Companies</h3>
+<h1 id="eCompanies">0</h1>
+</div>
+
+<div class="card orange">
+<h3>Efficiency</h3>
+<h1 id="eRate">0%</h1>
+</div>
+
+</div>
+
+<div class="box">
+
+<h2>Overall Placement Efficiency</h2>
+
+<div class="progress">
+<div id="efficiencyBar"></div>
+</div>
+
+<h1 id="efficiencyText">0%</h1>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let students =
+JSON.parse(localStorage.getItem("students")) || [];
+
+let companies =
+JSON.parse(localStorage.getItem("companies")) || [];
+
+let placements =
+JSON.parse(localStorage.getItem("placements")) || [];
+
+let editStudentIndex = -1;
+let editCompanyIndex = -1;
+let editPlacementIndex = -1;
+
+
+/* SAVE DATA */
+
+function saveData(){
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+localStorage.setItem(
+"companies",
+JSON.stringify(companies)
+);
+
+localStorage.setItem(
+"placements",
+JSON.stringify(placements)
+);
+
+updateDashboard();
+
+}
+
+
+/* PAGE NAVIGATION */
+
+function showPage(page,button){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(page)
+.classList.add("active");
+
+document.querySelectorAll(".sidebar button")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+updateDashboard();
+
+}
+
+
+/* STUDENT */
+
+document.getElementById("studentForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let student={
+name:document.getElementById("studentName").value,
+email:document.getElementById("studentEmail").value,
+dept:document.getElementById("studentDept").value,
+year:document.getElementById("studentYear").value,
+cgpa:document.getElementById("studentCgpa").value,
+status:document.getElementById("studentStatus").value
+};
+
+if(editStudentIndex==-1){
+
+students.push(student);
+
+}else{
+
+students[editStudentIndex]=student;
+
+editStudentIndex=-1;
+
+}
+
+saveData();
+
+displayStudents();
+
+this.reset();
+
+});
+
+
+function displayStudents(list=students){
+
+let table=
+document.getElementById("studentTable");
+
+table.innerHTML="";
+
+list.forEach((s,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+<td>${s.name}</td>
+<td>${s.email}</td>
+<td>${s.dept}</td>
+<td>${s.year}</td>
+<td>${s.cgpa}</td>
+<td>${s.status}</td>
+
+<td>
+
+<button class="edit"
+onclick="editStudent(${index})">
+Edit
+</button>
+
+<button class="delete"
+onclick="deleteStudent(${index})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+function editStudent(index){
+
+let s=students[index];
+
+document.getElementById("studentName").value=s.name;
+document.getElementById("studentEmail").value=s.email;
+document.getElementById("studentDept").value=s.dept;
+document.getElementById("studentYear").value=s.year;
+document.getElementById("studentCgpa").value=s.cgpa;
+document.getElementById("studentStatus").value=s.status;
+
+editStudentIndex=index;
+
+}
+
+
+function deleteStudent(index){
+
+if(confirm("Delete this student?")){
+
+students.splice(index,1);
+
+saveData();
+
+displayStudents();
+
+}
+
+}
+
+
+document.getElementById("studentSearch")
+.addEventListener("input",function(){
+
+let value=this.value.toLowerCase();
+
+let result=students.filter(s=>
+s.name.toLowerCase().includes(value)
+);
+
+displayStudents(result);
+
+});
+
+
+/* COMPANY */
+
+document.getElementById("companyForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let company={
+
+name:document.getElementById("companyName").value,
+role:document.getElementById("companyRole").value,
+pack:document.getElementById("companyPackage").value,
+location:document.getElementById("companyLocation").value
+
+};
+
+if(editCompanyIndex==-1){
+
+companies.push(company);
+
+}else{
+
+companies[editCompanyIndex]=company;
+
+editCompanyIndex=-1;
+
+}
+
+saveData();
+
+displayCompanies();
+
+this.reset();
+
+});
+
+
+function displayCompanies(list=companies){
+
+let table=
+document.getElementById("companyTable");
+
+table.innerHTML="";
+
+list.forEach((c,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+<td>${c.name}</td>
+<td>${c.role}</td>
+<td>${c.pack}</td>
+<td>${c.location}</td>
+
+<td>
+
+<button class="edit"
+onclick="editCompany(${index})">
+Edit
+</button>
+
+<button class="delete"
+onclick="deleteCompany(${index})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+function editCompany(index){
+
+let c=companies[index];
+
+document.getElementById("companyName").value=c.name;
+document.getElementById("companyRole").value=c.role;
+document.getElementById("companyPackage").value=c.pack;
+document.getElementById("companyLocation").value=c.location;
+
+editCompanyIndex=index;
+
+}
+
+
+function deleteCompany(index){
+
+if(confirm("Delete this company?")){
+
+companies.splice(index,1);
+
+saveData();
+
+displayCompanies();
+
+}
+
+}
+
+
+document.getElementById("companySearch")
+.addEventListener("input",function(){
+
+let value=this.value.toLowerCase();
+
+let result=companies.filter(c=>
+c.name.toLowerCase().includes(value)
+);
+
+displayCompanies(result);
+
+});
+
+
+/* PLACEMENT */
+
+document.getElementById("placementForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let placement={
+
+student:
+document.getElementById("placementStudent").value,
+
+company:
+document.getElementById("placementCompany").value,
+
+role:
+document.getElementById("placementRole").value,
+
+pack:
+document.getElementById("placementPackage").value,
+
+date:
+document.getElementById("placementDate").value
+
+};
+
+if(editPlacementIndex==-1){
+
+placements.push(placement);
+
+}else{
+
+placements[editPlacementIndex]=placement;
+
+editPlacementIndex=-1;
+
+}
+
+saveData();
+
+displayPlacements();
+
+this.reset();
+
+});
+
+
+function displayPlacements(list=placements){
+
+let table=
+document.getElementById("placementTable");
+
+table.innerHTML="";
+
+list.forEach((p,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+<td>${p.student}</td>
+<td>${p.company}</td>
+<td>${p.role}</td>
+<td>${p.pack}</td>
+<td>${p.date}</td>
+
+<td>
+
+<button class="edit"
+onclick="editPlacement(${index})">
+Edit
+</button>
+
+<button class="delete"
+onclick="deletePlacement(${index})">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+function editPlacement(index){
+
+let p=placements[index];
+
+document.getElementById("placementStudent").value=p.student;
+document.getElementById("placementCompany").value=p.company;
+document.getElementById("placementRole").value=p.role;
+document.getElementById("placementPackage").value=p.pack;
+document.getElementById("placementDate").value=p.date;
+
+editPlacementIndex=index;
+
+}
+
+
+function deletePlacement(index){
+
+if(confirm("Delete this placement?")){
+
+placements.splice(index,1);
+
+saveData();
+
+displayPlacements();
+
+}
+
+}
+
+
+document.getElementById("placementSearch")
+.addEventListener("input",function(){
+
+let value=this.value.toLowerCase();
+
+let result=placements.filter(p=>
+p.student.toLowerCase().includes(value) ||
+p.company.toLowerCase().includes(value)
+);
+
+displayPlacements(result);
+
+});
+
+
+/* DASHBOARD */
+
+function updateDashboard(){
+
+let total=students.length;
+
+let placed=students.filter(
+s=>s.status==="Placed"
+).length;
+
+let rate=total>0?
+Math.round((placed/total)*100):0;
+
+
+document.getElementById("totalStudents")
+.innerText=total;
+
+document.getElementById("totalCompanies")
+.innerText=companies.length;
+
+document.getElementById("totalPlaced")
+.innerText=placed;
+
+document.getElementById("placementRate")
+.innerText=rate+"%";
+
+document.getElementById("dashboardRate")
+.innerText=rate+"%";
+
+document.getElementById("bar")
+.style.width=rate+"%";
+
+
+document.getElementById("eStudents")
+.innerText=total;
+
+document.getElementById("ePlaced")
+.innerText=placed;
+
+document.getElementById("eCompanies")
+.innerText=companies.length;
+
+document.getElementById("eRate")
+.innerText=rate+"%";
+
+document.getElementById("efficiencyText")
+.innerText=rate+"%";
+
+document.getElementById("efficiencyBar")
+.style.width=rate+"%";
+
+}
+
+
+/* INITIAL LOAD */
+
+displayStudents();
+displayCompanies();
+displayPlacements();
+updateDashboard();
+
+</script>
 
 </body>
 </html>
