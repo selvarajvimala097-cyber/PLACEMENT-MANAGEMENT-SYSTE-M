@@ -24,6 +24,33 @@ It provides a dashboard to manage students, companies, and placement records.
 - CSS3
 - JavaScript
 - LocalStorage
+### 👨‍🎓 Student Management
+- Add new students.
+- Edit existing student details.
+- Delete student records.
+- Search students by name.
+- Store department, year, CGPA and placement status.
+
+### 🏢 Company Management
+- Add company details.
+- Edit company information.
+- Delete company records.
+- Search companies.
+- Store job role, package and location.
+
+### 💼 Placement Management
+- Add placement records.
+- Edit placement information.
+- Delete placement records.
+- Search placement records.
+- Maintain student, company, role, package and date.
+
+### 📈 Efficiency Dashboard
+- Shows total students.
+- Shows placed students.
+- Shows total companies.
+- Calculates placement efficiency.
+- Displays placement progress using a progress bar.
 
 
 
